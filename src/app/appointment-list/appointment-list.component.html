@@ -1,0 +1,38 @@
+<div>
+    <h2>Appointment Manager</h2>
+  
+    <!-- Input fields for new appointment -->
+    <input 
+      [(ngModel)]="newAppointmentTitle" 
+      placeholder="Appointment description"
+    />
+  
+    <input 
+      [(ngModel)]="newAppointmentDate"  
+      type="date" 
+      placeholder="Appointment date"
+    />
+  
+    <button (click)="addAppointment()">ADD</button>
+  
+    <h3>Appointment List</h3>
+  
+    <ul *ngIf="appointment.length > 0; else noAppointments">
+      <li *ngFor="let appt of appointment; let i = index">
+        <strong>#{{ i + 1 }}</strong> - 
+        <span>ID:</span> {{ appt.id }} |
+        <span>Title:</span> {{ appt.title }} |
+        <span>Date:</span> {{ appt.date | date: 'mediumDate' }}
+        
+        <!-- Delete button -->
+        <button (click)="deleteAppointment(appt.id)" style="margin-left: 10px; color: red;">
+          🗑️ Delete
+        </button>
+      </li>
+    </ul>
+  
+    <ng-template #noAppointments>
+      <p>No appointments found.</p>
+    </ng-template>
+  </div>
+  
